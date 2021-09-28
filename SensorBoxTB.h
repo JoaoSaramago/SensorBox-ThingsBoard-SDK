@@ -19,6 +19,7 @@
   #pragma message "Compiling for ESP32."
   #include <WiFi.h>
   #include <EEPROM.h>
+  #include "esp_wpa2.h"
 
 #elif defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__)
 
@@ -59,8 +60,32 @@ class SensorBox: public ThingsBoard {
       _token = token;
     }
 
+    SensorBox(const char *ap_name, const char *username, const char *password, const char *server_ip, const char *token) : ThingsBoard(wifi_client) {
+      #ifndef ESP32
+        #error "Only ESP32 is supported for WPA2 Enterprise authentication."
+      #endif
+      _ap_name = ap_name;
+      _username = username;
+      _password = password;
+      _server_ip = server_ip;
+      _token = token;
+    }
+
     SensorBox(char *ap_name, char *password, char *server_ip, const char* deviceName, const char* provisionDeviceKey, const char* provisionDeviceSecret) : ThingsBoard(wifi_client) {
       _ap_name = ap_name;
+      _password = password;
+      _server_ip = server_ip;
+      _deviceName = deviceName;
+      _provisionDeviceKey = provisionDeviceKey;
+      _provisionDeviceSecret = provisionDeviceSecret;
+    }
+
+    SensorBox(char *ap_name, const char *username, char *password, char *server_ip, const char* deviceName, const char* provisionDeviceKey, const char* provisionDeviceSecret) : ThingsBoard(wifi_client) {
+      #ifndef ESP32
+        #error "Only ESP32 is supported for WPA2 Enterprise authentication."
+      #endif
+      _ap_name = ap_name;
+      _username = username;
       _password = password;
       _server_ip = server_ip;
       _deviceName = deviceName;
@@ -105,6 +130,7 @@ class SensorBox: public ThingsBoard {
     bool subscribedRPC = false;
 
     const char *_ap_name;
+    const char *_username;
     const char *_password;
     const char *_server_ip;
 

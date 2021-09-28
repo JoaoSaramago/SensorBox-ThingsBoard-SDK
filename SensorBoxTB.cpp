@@ -83,6 +83,18 @@ void SensorBox::initComms() {
     }
   #endif
 
+  #ifdef ESP32
+  if (_username) {
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_STA);
+    esp_wifi_sta_wpa2_ent_set_identity((uint8_t *)_username, strlen(_username));
+    esp_wifi_sta_wpa2_ent_set_username((uint8_t *)_username, strlen(_username));
+    esp_wifi_sta_wpa2_ent_set_password((uint8_t *)_password, strlen(_password));
+    esp_wpa2_config_t config = WPA2_CONFIG_INIT_DEFAULT();
+    esp_wifi_sta_wpa2_ent_enable(&config);
+  }
+  #endif
+
   #if defined(ESP8266) || defined(ESP32)
     EEPROM.begin(64);
 
@@ -143,7 +155,16 @@ void SensorBox::connectWiFi() {
     #endif
 
     if (WiFi.status() != WL_CONNECTED) {
-      WiFi.begin(_ap_name, _password);
+      #ifdef ESP32
+      if (_username) {
+        WiFi.begin(_ap_name);
+      } else {
+        WiFi.begin(_ap_name, _password);
+      }
+      #else
+        WiFi.begin(_ap_name, _password);
+      #endif
+
       for (int i = 0; i <= 10 && ( WiFi.status() == WL_DISCONNECTED || WiFi.status() == WL_IDLE_STATUS ); i++) {
         #if SERIAL_DEBUG
           Serial.print(".");
