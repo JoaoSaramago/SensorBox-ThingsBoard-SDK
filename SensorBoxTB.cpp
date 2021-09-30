@@ -62,7 +62,7 @@ String token_tb;
 
   const Provision_Callback provisionCallback = processProvisionResponse;
 
-  void SensorBox::clearSavedToken() {
+  void clearSavedToken() {
     EEPROM.begin(64);
     EEPROM.write(0, '\0');
     EEPROM.commit();

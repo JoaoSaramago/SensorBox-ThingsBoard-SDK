@@ -111,8 +111,6 @@ class SensorBox: public ThingsBoard {
 
     void checkFirmwareUpdates(const char* currFwTitle, const char* currFwVersion);
 
-    void clearSavedToken();
-
     void loop();
 
   private:
@@ -143,5 +141,7 @@ class SensorBox: public ThingsBoard {
     RPC_Callback *_callbacks;
     size_t _callbacks_size;
 };
+
+void clearSavedToken();
 
 #endif
