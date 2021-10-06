@@ -67,10 +67,14 @@ void setup() {
 
 void loop() { 
   leds_task(); 
-  light_sensor_task();
-  temperature_task();
+  
+  // Apenas corre o codigo relacionado com os sensores se estiver ligado ao servidor
+  if (sb.connected()) {
+    light_sensor_task();
+    temperature_task();
+  }
 
-  // Manutenção das comunicações
+  // Manutencao das comunicacoes
   sb.loop();
 }
 
