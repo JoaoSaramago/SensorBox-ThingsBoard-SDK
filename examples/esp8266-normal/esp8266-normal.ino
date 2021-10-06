@@ -278,7 +278,7 @@ void noise_task() {
       last_sent_noise = noise;
       message_sent = true;
 
-      // Se for detetado barulho reinicia o contador do atraso para sair do estado que diz haver ruido
+      // Se for detetado ruido reinicia o contador do atraso para sair do estado que diz haver ruido
       if (noise) {
         noise_delay_off_started = millis();
       }
