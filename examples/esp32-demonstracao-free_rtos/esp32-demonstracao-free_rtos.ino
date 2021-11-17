@@ -88,7 +88,7 @@ bool sb_connected = false;
 
 
 // Processa a chamada RPC "setBuzzer", aciona a campainha consoante o comando recebido
-RPC_Response processSetBuzzer(const RPC_Data &data)
+RPC_Response processSetBuzzer(const RPC_Data &data){
 
   buzzer_on = data["value"];
   digitalWrite(BUZZER_PIN, buzzer_on);
