@@ -1,6 +1,6 @@
 # SensorBox-ThingsBoard SDK
 
-Biblioteca para microcontroladores que simplifica a conexão e comunicação destes com a plataforma de IoT ThingsBoard. Esta extende a biblioteca oficial já existente para Arduino que comunica com o servidor através da API de MQTT. Agiliza o uso das seguintes funcionalidades:
+Biblioteca para microcontroladores que simplifica a conexão e comunicação destes com a plataforma de IoT ThingsBoard. Esta extende a biblioteca oficial (versão 0.6 testada) já existente para Arduino que comunica com o servidor através da API de MQTT. Agiliza o uso das seguintes funcionalidades:
 
 - Conexão à rede Wi-Fi, incluindo rede Eduroam (experimental)
 - Conexão ao servidor
