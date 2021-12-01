@@ -11,4 +11,6 @@ Biblioteca para microcontroladores que simplifica a conexão e comunicação des
 - Atualizações OTA
 
 A biblioteca é compatível com o Arduino Uno e a sua placa Wi-Fi(baseada no ESP8266), o ESP8266 e o ESP32. Com esta biblioteca o mesmo ficheiro de código pode ser usado nos três microcontroladores mencionados.
+
+Instruções sobre a utilização desta biblioteca podem ser encontradas na Wiki.
  
